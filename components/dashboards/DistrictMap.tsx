@@ -69,7 +69,7 @@ export const DistrictMap: React.FC<DistrictMapProps> = ({ onDistrictSelect }) =>
   const { role } = useApp();
 
   return (
-    <div className="bg-[#131B2E] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
+    <div className="bg-surface text-default p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6 dark:bg-[#131B2E] dark:text-white">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
         <div>
@@ -89,7 +89,7 @@ export const DistrictMap: React.FC<DistrictMapProps> = ({ onDistrictSelect }) =>
       {/* Map & Telemetry Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         {/* Stylized SVG Map Container */}
-        <div className="lg:col-span-7 bg-[#0B1020] p-6 rounded-2xl border border-slate-800 relative h-72 flex items-center justify-center overflow-hidden">
+        <div className="lg:col-span-7 bg-surface dark:bg-[#0B1020] p-6 rounded-2xl border border-slate-800 relative h-72 flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#6366f1_1.5px,transparent_1.5px)] [background-size:18px_18px]"></div>
 
           <svg className="w-full h-full max-h-60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +141,7 @@ export const DistrictMap: React.FC<DistrictMapProps> = ({ onDistrictSelect }) =>
         </div>
 
         {/* Selected District Telemetry Info */}
-        <div className="lg:col-span-5 space-y-4 bg-[#0B1020] p-5 rounded-2xl border border-slate-800">
+        <div className="lg:col-span-5 space-y-4 bg-surface dark:bg-[#0B1020] p-5 rounded-2xl border border-slate-800">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div>
               <span className="text-[10px] uppercase font-bold text-indigo-400 tracking-wider">Selected Node</span>

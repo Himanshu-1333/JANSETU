@@ -28,7 +28,7 @@ export const ProjectPipeline: React.FC<ProjectPipelineProps> = ({ currentStatus 
   const currentIndex = statusOrder[currentStatus] ?? 0;
 
   return (
-    <div className="w-full bg-[#131B2E] text-white p-5 rounded-2xl border border-slate-800 shadow-xl space-y-4">
+    <div className="w-full bg-surface text-default p-5 rounded-2xl border border-slate-800 shadow-xl space-y-4 dark:bg-[#131B2E] dark:text-white">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Innovation Lifecycle Pipeline</h4>
         <span className="text-xs font-bold text-indigo-300 bg-indigo-950/90 px-3 py-1 rounded-lg border border-indigo-800">

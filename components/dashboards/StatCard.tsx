@@ -30,7 +30,7 @@ export const StatCard: React.FC<StatCardProps> = ({
   };
 
   return (
-    <div className="bg-[#131B2E]/90 p-5 rounded-2xl border border-slate-800/80 shadow-xl flex items-start justify-between relative overflow-hidden group hover:border-indigo-500/40 transition-all duration-300">
+    <div className="bg-surface p-5 rounded-2xl border border-slate-800/80 shadow-xl flex items-start justify-between relative overflow-hidden group hover:border-indigo-500/40 transition-all duration-300 dark:bg-[#131B2E]/90 dark:text-white">
       {isLive && (
         <div className="absolute top-2.5 right-2.5 flex items-center gap-1 bg-emerald-950/90 border border-emerald-800/80 px-2 py-0.5 rounded-full text-[9px] font-black text-emerald-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
@@ -39,7 +39,7 @@ export const StatCard: React.FC<StatCardProps> = ({
       )}
       <div className="space-y-1 z-10">
         <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{title}</span>
-        <div className="text-2xl sm:text-3xl font-black text-white tracking-tight transition-all duration-300">
+        <div className="text-2xl sm:text-3xl font-black text-default tracking-tight transition-all duration-300 dark:text-white">
           {typeof value === 'number' ? value.toLocaleString() : value}
         </div>
         {subtext && <p className="text-xs text-slate-400 font-medium">{subtext}</p>}

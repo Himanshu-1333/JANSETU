@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
   }
 
   return (
-    <footer className="bg-[#030712] text-slate-400 text-xs border-t border-slate-800/80">
+    <footer className="bg-surface text-slate-700 text-xs border-t border-slate-800/80 dark:bg-[#030712] dark:text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
           {/* Col 1 */}

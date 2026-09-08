@@ -23,7 +23,7 @@ export const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
   };
 
   return (
-    <div className={`bg-[#131B2E]/90 rounded-2xl border shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1 ${
+    <div className={`bg-surface rounded-2xl border shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1 dark:bg-[#131B2E]/90 dark:text-white ${
       challenge.isNew 
         ? 'border-emerald-500 shadow-emerald-500/20 ring-1 ring-emerald-500/40' 
         : challenge.justResolved 
@@ -38,7 +38,7 @@ export const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
             alt={challenge.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#131B2E] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent dark:from-[#131B2E]"></div>
           
           <div className="absolute top-2.5 left-2.5 flex items-center gap-2">
             <PriorityScoreBadge score={challenge.priority_score} severity={challenge.severity} size="sm" />
