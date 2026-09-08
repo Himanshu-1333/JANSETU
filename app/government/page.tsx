@@ -56,7 +56,7 @@ const DEPARTMENTS_DATA: Department[] = [
 ];
 
 export default function GovernmentPage() {
-  const { stats, challenges, addToast } = useApp();
+  const { stats, challenges, addToast, role } = useApp();
 
   const [selectedDistrictFilter, setSelectedDistrictFilter] = useState<string>('Dumka');
   const [selectedDepartment, setSelectedDepartment] = useState<string>('All');
@@ -97,6 +97,18 @@ export default function GovernmentPage() {
   const filteredDepartments = selectedDepartment === 'All' 
     ? DEPARTMENTS_DATA 
     : DEPARTMENTS_DATA.filter(d => d.id === selectedDepartment);
+
+  if (role !== 'government') {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-12">
+        <h2 className="text-2xl font-black text-slate-900">Access denied</h2>
+        <p className="text-sm text-slate-500 mt-2">This section is for government users only.</p>
+        <div className="mt-4">
+          <Link href="/" className="text-indigo-600 font-bold">Go to Home</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#070B14] text-slate-100 font-sans pb-16">
