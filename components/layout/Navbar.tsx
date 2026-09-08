@@ -134,8 +134,8 @@ export const Navbar: React.FC = () => {
             <Sparkles className="w-5 h-5 text-indigo-100" />
           </div>
           <div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-lg font-black tracking-tight text-white">JanSetu</span>
+              <div className="flex items-center gap-1.5">
+              <span className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white">JanSetu</span>
             </div>
             <span className="text-[9px] font-extrabold tracking-widest uppercase text-emerald-400 block -mt-1">
               CIVIC INNOVATION
