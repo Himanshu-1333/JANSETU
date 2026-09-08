@@ -88,6 +88,21 @@ html:not(.dark) .p-6, html:not(.dark) .p-5 { color: var(--text-default) !importa
 /* Ensure white text classes flip to dark text */
 html:not(.dark) .text-white\/90, html:not(.dark) .text-white { color: var(--text-default) !important; }
 
+/* Ensure very light slate text flips to dark in light mode */
+html:not(.dark) .text-slate-100 { color: var(--text-default) !important; }
+
+/* Override hero gradient utility classes that use dark hex stops */
+html:not(.dark) [class*="from-[#05070F]"], html:not(.dark) [class*="via-[#0B1020]"], html:not(.dark) [class*="to-[#0B1020]"], html:not(.dark) [class*="from-[#0B1020]"] {
+  background-image: none !important;
+  background-color: var(--site-bg) !important;
+  color: var(--text-default) !important;
+}
+
+/* Ensure overlay gradients (bg-gradient-to-t from-[#0B1020]) are neutralized */
+html:not(.dark) .bg-gradient-to-t [class*="from-[#0B1020]"], html:not(.dark) [class*="bg-gradient-to-t"] {
+  background-image: none !important;
+}
+
 /* Buttons and inputs using bg-[#0B1020] or bg-[#131B2E] */
 html:not(.dark) .bg-\[\#0B1020\], html:not(.dark) .bg-\[\#131B2E\] { background-color: var(--surface-bg) !important; }
 html:not(.dark) input[class*="bg-[#0B1020]"], html:not(.dark) input[class*="bg-[#131B2E]"] { background-color: var(--surface-bg) !important; color: var(--text-default) !important; border-color: var(--card-border) !important; }
