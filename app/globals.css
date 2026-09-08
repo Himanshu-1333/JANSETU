@@ -112,6 +112,16 @@ html:not(.dark) [class*="from-indigo-900"], html:not(.dark) [class*="via-slate-9
 html:not(.dark) .bg-\[\#0B1020\] { background-color: var(--site-bg) !important; }
 html:not(.dark) .bg-\[\#0F172A\]\/90 { background-color: rgba(248,250,252,0.96) !important; }
 
+/* Broad catch-all overrides to handle opacity variants and utility variants */
+html:not(.dark) [class*="text-white"] { color: var(--text-default) !important; }
+html:not(.dark) [class*="text-slate-100"] { color: var(--text-default) !important; }
+html:not(.dark) [class*="bg-[#"] { background-color: var(--surface-bg) !important; color: var(--text-default) !important; border-color: var(--card-border) !important; }
+html:not(.dark) [class*="bg-slate-9"] { background-color: var(--surface-bg) !important; color: var(--text-default) !important; }
+
+.dark [class*="text-slate-9"], .dark [class*="text-slate-8"], .dark [class*="text-slate-7"] { color: var(--text-default) !important; }
+.dark [class*="bg-white"], .dark [class*="bg-slate-50"], .dark [class*="bg-slate-100"] { background-color: var(--surface-bg) !important; color: var(--text-default) !important; border-color: var(--card-border) !important; }
+.dark [class*="border-slate-2"], .dark [class*="border-slate-1"] { border-color: var(--card-border) !important; }
+
 /* Cards, panels, inputs that used dark backgrounds */
 html:not(.dark) .rounded-3xl, html:not(.dark) .rounded-2xl, html:not(.dark) .rounded-xl { background-color: var(--surface-bg) !important; color: var(--text-default) !important; border-color: var(--card-border) !important; }
 html:not(.dark) .p-6, html:not(.dark) .p-5 { color: var(--text-default) !important; }
