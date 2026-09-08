@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className="sticky top-0 z-50 w-full px-3 sm:px-6 pt-2 pb-1">
       {/* Real Platform Status Bar - Rectangular */}
-      <div className="max-w-7xl mx-auto bg-[#030712]/95 backdrop-blur-md text-slate-400 text-[10px] py-1.5 px-4 rounded-t-xl border-x border-t border-slate-800/80 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto brand-status bg-[#030712]/95 backdrop-blur-md text-slate-400 text-[10px] py-1.5 px-4 rounded-t-xl border-x border-t border-slate-800/80 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-sm bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400"></span>
           <span className="font-bold text-slate-200">JanSetu Civic Platform</span>
@@ -122,7 +122,7 @@ export const Navbar: React.FC = () => {
 
       {/* Main Header Container - Crisp Rectangular Bar */}
       <header
-        className={`max-w-7xl mx-auto rounded-b-xl rounded-t-none md:rounded-b-2xl border transition-all duration-300 ${
+        className={`max-w-7xl mx-auto brand-header rounded-b-xl rounded-t-none md:rounded-b-2xl border transition-all duration-300 ${
           scrolled
             ? 'bg-[#0B1020]/95 border-indigo-500/40 shadow-[0_12px_35px_rgba(0,0,0,0.85),0_0_25px_rgba(99,102,241,0.25)]'
             : 'bg-[#0F172A]/90 border-slate-800 shadow-2xl'
@@ -130,8 +130,8 @@ export const Navbar: React.FC = () => {
       >
         {/* Brand - Rectangular Badge */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-500 flex items-center justify-center text-white font-black shadow-md shadow-indigo-600/40 group-hover:scale-105 transition-transform">
-            <Sparkles className="w-5 h-5 text-indigo-100" />
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-500 flex items-center justify-center text-white font-black shadow-md shadow-indigo-600/40 group-hover:scale-105 transition-transform">
+            <Sparkles className="w-6 h-6 text-indigo-100" />
           </div>
           <div>
               <div className="flex items-center gap-1.5">

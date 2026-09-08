@@ -226,3 +226,26 @@ html:not(.dark) .backdrop-blur-2xl, html:not(.dark) .backdrop-blur-md { backgrou
 .animate-shimmer {
   animation: shimmer 2s infinite;
 }
+
+/* Brand header tweaks: use theme variables for safe styling */
+.brand-header {
+  background-color: var(--surface-bg);
+  color: var(--text-default);
+  border-color: var(--card-border);
+}
+
+.brand-status {
+  background-color: rgba(0,0,0,0.04);
+  color: var(--muted-text);
+}
+
+/* When in dark mode, tweak brand header for better contrast */
+.dark .brand-header {
+  background-color: var(--site-bg);
+  color: var(--text-default);
+}
+
+.dark .brand-status {
+  background-color: rgba(2,6,23,0.5);
+  color: var(--muted-text);
+}
