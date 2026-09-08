@@ -45,6 +45,16 @@ html:not(.dark) {
   --muted-text: #475569;
 }
 
+/* Dark mode variables (when .dark present on html) */
+.dark {
+  --site-bg: #0b1020;
+  --surface-bg: #0f172a;
+  --muted-bg: rgba(15,23,42,0.6);
+  --card-border: rgba(2,6,23,0.6);
+  --text-default: #e6f0ff;
+  --muted-text: #94a3b8;
+}
+
 html:not(.dark) .text-white { color: var(--text-default) !important; }
 html:not(.dark) .text-slate-200 { color: var(--muted-text) !important; }
 html:not(.dark) .bg-\[\#040711\], html:not(.dark) [class*="bg-[#040711]"] { background-color: var(--site-bg) !important; }
@@ -60,6 +70,27 @@ html:not(.dark) input, html:not(.dark) textarea, html:not(.dark) .rounded-xl, ht
   background-color: var(--surface-bg) !important;
   color: var(--text-default) !important;
   border-color: var(--card-border) !important;
+}
+
+/* Mirror: when .dark is present, ensure common light classes become dark surfaces/text */
+.dark .text-slate-900, .dark .text-slate-800, .dark .text-slate-700, .dark .text-slate-600 {
+  color: var(--text-default) !important;
+}
+.dark .bg-white, .dark .bg-slate-50, .dark .bg-slate-100, .dark [class*="bg-[#fff"] {
+  background-color: var(--surface-bg) !important;
+  color: var(--text-default) !important;
+  border-color: var(--card-border) !important;
+}
+.dark input, .dark textarea, .dark .rounded-xl, .dark .rounded-2xl {
+  background-color: var(--surface-bg) !important;
+  color: var(--text-default) !important;
+  border-color: var(--card-border) !important;
+}
+
+/* Ensure components using light borders/text flip in dark mode */
+.dark .border-slate-200, .dark .border-slate-100, .dark .text-slate-900 {
+  border-color: var(--card-border) !important;
+  color: var(--text-default) !important;
 }
 
 html:not(.dark) .bg-indigo-600 { background-color: #4f46e5 !important; color: #fff !important; }
