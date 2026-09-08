@@ -23,12 +23,16 @@ import {
   Bell,
   LogIn,
   Activity
+  ,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user, role, setRole, isAuthenticated, signOutUser, notifications } = useApp();
+  const { theme, setTheme } = useApp();
 
   const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -260,6 +264,15 @@ export const Navbar: React.FC = () => {
           >
             {user.avatar || 'AD'}
           </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-xl bg-[#040711] border border-slate-800 text-slate-200 hover:text-white focus:outline-none"
+            title="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-yellow-300" /> : <Moon className="w-4 h-4 text-slate-400" />}
+          </button>
 
           {/* Mobile Drawer Button */}
           <button

@@ -122,6 +122,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   ]);
 
   const [toast, setToast] = useState<string | null>(null);
+  const [theme, setThemeState] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('jansetu_theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+    } catch (e) {}
+    if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  });
 
   const [liveTelemetry, setLiveTelemetry] = useState<LiveTelemetry>({
     totalChallenges: 2481,
@@ -237,6 +247,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   }, []);
 
+  // Theme persistence and html class toggling
+  useEffect(() => {
+    try {
+      localStorage.setItem('jansetu_theme', theme);
+    } catch (e) {}
+    if (typeof document !== 'undefined') {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, [theme]);
+
   const saveReports = (newReports: ProblemReport[]) => {
     setReports(newReports);
     try {
@@ -288,6 +312,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       localStorage.setItem('jansetu_app_role', newRole);
     } catch (e) {}
     showToast(`Account Perspective: ${newRole.toUpperCase()}`);
+  };
+
+  const setTheme = (t: 'light' | 'dark') => {
+    setThemeState(t);
+    try { localStorage.setItem('jansetu_theme', t); } catch (e) {}
   };
 
   const loginUser = (login: string, pass: string, rememberMe: boolean = false): boolean => {
@@ -545,6 +574,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     isAuthenticated,
     isAuthLoaded,
     setRole,
+    theme,
+    setTheme,
     reports,
     challenges,
     projects,
@@ -572,6 +603,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     role,
     isAuthenticated,
     isAuthLoaded,
+    theme,
     reports,
     challenges,
     projects,

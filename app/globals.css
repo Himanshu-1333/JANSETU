@@ -6,6 +6,9 @@
   :root {
     color-scheme: light;
   }
+  .dark :root {
+    color-scheme: dark;
+  }
   body {
     @apply bg-slate-50 text-slate-900 antialiased font-sans selection:bg-indigo-300 selection:text-slate-900;
     /* Soft textured light background with gentle pastel accents */
@@ -16,6 +19,21 @@
     background-attachment: fixed;
   }
 }
+
+/* Dark theme overrides when .dark is present on html */
+.dark body {
+  @apply bg-[#0B1020] text-slate-100;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(14, 165, 233, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Dark scrollbars */
+.dark ::-webkit-scrollbar-track { background: #0b1020; }
+.dark ::-webkit-scrollbar-thumb { background: #1e293b; border: 2px solid #0b1020; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
 /* Custom subtle light scrollbars */
 ::-webkit-scrollbar {
