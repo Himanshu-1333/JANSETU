@@ -25,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full dark scroll-smooth">
-      <body className={`${inter.className} flex flex-col min-h-screen bg-[#0B1020] text-slate-100`}>
+    <html lang="en" className="h-full scroll-smooth">
+      <body className={`${inter.className} flex flex-col min-h-screen bg-white text-slate-900`}>
         <AppProvider>
           <RouteGuard>
             <Navbar />
