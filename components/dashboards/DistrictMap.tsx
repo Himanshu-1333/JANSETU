@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useApp } from '@/context/AppContext';
 import { MapPin, Sparkles, Activity, Users, ArrowUpRight } from 'lucide-react';
 
 interface DistrictMapProps {
@@ -64,6 +65,8 @@ export const DistrictMap: React.FC<DistrictMapProps> = ({ onDistrictSelect }) =>
   };
 
   const selected = districtData[activeDistrict] || districtData['Dumka'];
+
+  const { role } = useApp();
 
   return (
     <div className="bg-[#131B2E] text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
@@ -144,9 +147,14 @@ export const DistrictMap: React.FC<DistrictMapProps> = ({ onDistrictSelect }) =>
               <span className="text-[10px] uppercase font-bold text-indigo-400 tracking-wider">Selected Node</span>
               <h4 className="text-lg font-black text-white">{selected.title}</h4>
             </div>
-            <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
-              {selected.status}
-            </span>
+            {/* Show status only to admin/government users */}
+            {role === 'government' ? (
+              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+                {selected.status}
+              </span>
+            ) : (
+              <span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 font-bold">Citizen View</span>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-3 text-xs">

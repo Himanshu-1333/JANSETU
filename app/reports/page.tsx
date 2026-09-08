@@ -4,7 +4,7 @@ import React from 'react';
 import { useApp } from '@/context/AppContext';
 
 export default function ReportsPage() {
-  const { reports, user, role } = useApp();
+  const { reports, user, role, verifyReportByGov } = useApp();
 
   const visible = role === 'government' ? reports : reports.filter((r) => r.createdBy && typeof r.createdBy === 'string' ? r.createdBy.includes(user.name) : false);
 
@@ -22,8 +22,20 @@ export default function ReportsPage() {
                 <div className="text-xs text-slate-500">{r.district} • {r.category}</div>
               </div>
               <div className="text-right">
-                <div className="text-sm font-black text-indigo-600 dark:text-indigo-300">Priority {r.priorityScore}</div>
-                <div className="text-[11px] text-slate-400">Status: {r.status}</div>
+                {role === 'government' ? (
+                  <>
+                    <div className="text-sm font-black text-indigo-600 dark:text-indigo-300">Priority {r.priorityScore}</div>
+                    <div className="text-[11px] text-slate-400">Status: {r.status}</div>
+                    <div className="mt-2 flex items-center gap-2 justify-end">
+                      <button onClick={() => { verifyReportByGov(r.id); }} className="px-3 py-1 rounded-md bg-emerald-600 text-white text-sm font-bold">Verify</button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-sm font-black text-slate-700 dark:text-slate-300">Priority Hidden</div>
+                    <div className="text-[11px] text-slate-400">Status: {r.status}</div>
+                  </>
+                )}
               </div>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-300 mt-2">{r.description}</p>
