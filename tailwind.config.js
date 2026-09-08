@@ -1,41 +1,77 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
+
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './context/**/*.{js,ts,jsx,tsx,mdx}',
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+
   theme: {
     extend: {
       colors: {
         brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          dark: '#0B1020',
+          50: '#FFFFFF',
+          100: '#FAFAF8',
+          200: '#F5F5F3',
+          300: '#EEEEEC',
+          400: '#E5E5E2',
+          500: '#DCDCD8',
+          600: '#CFCFCA',
+          700: '#BDBDB7',
+          800: '#A9A9A2',
+          900: '#92928B',
+
+          background: '#F5F5F3',
+          surface: '#FFFFFF',
+          card: '#FFFFFF',
+
+          border: '#DCDCDC',
+          text: '#252525',
+          muted: '#777777',
         },
+
         gov: {
-          dark: '#0B1020',
-          card: '#131B2E',
-          accent: '#4F46E5',
-          success: '#10B981',
-          warning: '#F59E0B',
-          critical: '#EF4444',
-          bg: '#F8FAFC',
-        }
+          bg: '#F5F5F3',
+          surface: '#FFFFFF',
+          card: '#FFFFFF',
+
+          text: '#252525',
+          muted: '#777777',
+
+          border: '#DCDCDC',
+
+          accent: '#7666C8',
+          accentLight: '#EEEBFA',
+
+          success: '#3E8E6B',
+          successLight: '#EDF7F2',
+
+          warning: '#C58A32',
+          warningLight: '#FFF6E5',
+
+          critical: '#C85C5C',
+          criticalLight: '#FCEEEE',
+
+          info: '#7666C8',
+          infoLight: '#EEEBFA',
+        },
       },
+
       borderRadius: {
-        'xl': '12px',
+        xl: '12px',
         '2xl': '16px',
         '3xl': '18px',
-      }
+      },
+
+      boxShadow: {
+        card: '0 2px 10px rgba(0, 0, 0, 0.05)',
+        soft: '0 1px 5px rgba(0, 0, 0, 0.04)',
+      },
     },
   },
+
   plugins: [],
-}
+};
