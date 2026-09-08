@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { ProfileDropdown } from '@/components/layout/ProfileDropdown';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
@@ -268,12 +269,9 @@ export const Navbar: React.FC = () => {
             </div>
           )}
 
-          {/* User Avatar - Rectangular */}
-          <div
-            className="w-8 h-8 rounded-xl bg-indigo-950 border border-indigo-500/40 flex items-center justify-center text-xs font-extrabold text-indigo-300 shadow-inner"
-            title={user.name}
-          >
-            {user.avatar || 'AD'}
+          {/* User Avatar & Profile Dropdown */}
+          <div>
+            <ProfileDropdown />
           </div>
 
           {/* Theme Toggle */}
