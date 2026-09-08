@@ -81,6 +81,15 @@ export const Navbar: React.FC = () => {
     { href: '/government', label: 'Gov Command', icon: <Building2 className="w-3.5 h-3.5" /> },
   ];
 
+  // Filter nav links by role: citizens see a simplified navigation
+  const filteredNavLinks = navLinks.filter((link) => {
+    if (role === 'citizen') {
+      return ['/', '/report', '/challenges'].includes(link.href);
+    }
+    // government (admin) sees all links
+    return true;
+  });
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (navSearch.trim()) {
@@ -135,7 +144,7 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Links - Rectangular Tabs */}
         <nav className="hidden lg:flex items-center gap-1 bg-[#040711] p-1.5 rounded-xl border border-slate-800/90">
-          {navLinks.map((link) => {
+          {filteredNavLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
@@ -182,7 +191,7 @@ export const Navbar: React.FC = () => {
               )}
             </button>
 
-            {isNotifOpen && (
+              {isNotifOpen && (
               <div className="absolute right-0 mt-3 w-72 bg-[#0F172A] rounded-xl border border-slate-800 shadow-2xl p-3 z-50 space-y-2">
                 <div className="flex items-center justify-between border-b border-slate-800 pb-2">
                   <span className="text-xs font-bold text-white">Notifications</span>
@@ -200,62 +209,64 @@ export const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Role Switcher Rectangular Box */}
-          <div className="relative">
-            <button
-              onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#040711] hover:bg-slate-800 border border-slate-800 text-xs font-black text-white transition-all shadow-sm"
-            >
-              {currentRoleObj.icon}
-              <span className="hidden sm:inline font-extrabold">
-                <strong className="text-indigo-400 capitalize">{role}</strong>
-              </span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-            </button>
+          {/* Role switcher only visible to government (admin) users */}
+          {role === 'government' && (
+            <div className="relative">
+              <button
+                onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#040711] hover:bg-slate-800 border border-slate-800 text-xs font-black text-white transition-all shadow-sm"
+              >
+                {currentRoleObj.icon}
+                <span className="hidden sm:inline font-extrabold">
+                  <strong className="text-indigo-400 capitalize">{role}</strong>
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+              </button>
 
-            {isRoleDropdownOpen && (
-              <div className="absolute right-0 mt-3 w-64 bg-[#0F172A] rounded-xl border border-slate-800 shadow-2xl p-2.5 z-50 space-y-1 animate-fadeIn">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 px-2">
-                  <span className="text-[10px] uppercase font-black text-indigo-400">Active Role Perspective</span>
-                  <span className="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-800 px-1.5 py-0.5 rounded font-bold">4 MODES</span>
-                </div>
-                {roleConfigs.map((r) => {
-                  const roleSubtexts: Record<string, string> = {
-                    citizen: 'Report civic issues & track local progress',
-                    university: 'R&D lab proposals & CSR grants',
-                    industry: 'Pledge CSR funds & mentor prototypes',
-                    government: 'Command SLA center & emergency funds'
-                  };
+              {isRoleDropdownOpen && (
+                <div className="absolute right-0 mt-3 w-64 bg-[#0F172A] rounded-xl border border-slate-800 shadow-2xl p-2.5 z-50 space-y-1 animate-fadeIn">
+                  <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 px-2">
+                    <span className="text-[10px] uppercase font-black text-indigo-400">Active Role Perspective</span>
+                    <span className="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-800 px-1.5 py-0.5 rounded font-bold">4 MODES</span>
+                  </div>
+                  {roleConfigs.map((r) => {
+                    const roleSubtexts: Record<string, string> = {
+                      citizen: 'Report civic issues & track local progress',
+                      university: 'R&D lab proposals & CSR grants',
+                      industry: 'Pledge CSR funds & mentor prototypes',
+                      government: 'Command SLA center & emergency funds'
+                    };
 
-                  return (
-                    <button
-                      key={r.id}
-                      onClick={() => {
-                        setRole(r.id);
-                        setIsRoleDropdownOpen(false);
-                      }}
-                      className={`w-full text-left p-2.5 rounded-lg text-xs font-bold transition-all ${
-                        role === r.id 
-                          ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-black shadow-md border border-indigo-400/50' 
-                          : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          {r.icon}
-                          <span>{r.label}</span>
+                    return (
+                      <button
+                        key={r.id}
+                        onClick={() => {
+                          setRole(r.id);
+                          setIsRoleDropdownOpen(false);
+                        }}
+                        className={`w-full text-left p-2.5 rounded-lg text-xs font-bold transition-all ${
+                          role === r.id 
+                            ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-black shadow-md border border-indigo-400/50' 
+                            : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            {r.icon}
+                            <span>{r.label}</span>
+                          </div>
+                          {role === r.id && <span className="w-2 h-2 rounded-sm bg-emerald-400 animate-pulse"></span>}
                         </div>
-                        {role === r.id && <span className="w-2 h-2 rounded-sm bg-emerald-400 animate-pulse"></span>}
-                      </div>
-                      <p className={`text-[10px] mt-0.5 font-normal ${role === r.id ? 'text-indigo-100' : 'text-slate-400'}`}>
-                        {roleSubtexts[r.id]}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                        <p className={`text-[10px] mt-0.5 font-normal ${role === r.id ? 'text-indigo-100' : 'text-slate-400'}`}>
+                          {roleSubtexts[r.id]}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* User Avatar - Rectangular */}
           <div

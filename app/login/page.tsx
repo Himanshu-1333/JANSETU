@@ -26,7 +26,6 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [roleOption, setRoleOption] = useState<string>('citizen');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,13 +33,11 @@ export default function LoginPage() {
     setIsLoading(true);
 
     setTimeout(() => {
-      // If no explicit username provided, use selected role quick-login mapping
-      const loginId = username.trim() === '' ? roleOption : username;
-      const success = loginUser(loginId, password, rememberMe);
+      const success = loginUser(username, password, rememberMe);
       if (success) {
         router.push('/');
       } else {
-        setErrorMessage('Invalid credentials. For demo users try: citizen, university, industry, or admin (admin1234)');
+        setErrorMessage('Invalid credentials. Use admin/admin1234 or user/user1234');
         setIsLoading(false);
       }
     }, 400);
@@ -63,7 +60,7 @@ export default function LoginPage() {
         </div>
         <h1 className="text-3xl font-black text-white">JanSetu Portal Sign In</h1>
         <p className="text-xs text-slate-400">
-          Sign in required to access JanSetu Civic Platform. Choose your role for demo access.
+          Sign in required to access JanSetu Civic Platform. Demo credentials: <strong>admin/admin1234</strong> and <strong>user/user1234</strong>.
         </p>
       </div>
 
@@ -71,16 +68,11 @@ export default function LoginPage() {
       <div className="bg-[#131B2E] p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/10 rounded-full blur-2xl pointer-events-none"></div>
 
-        {/* Role selector for demo users */}
+        {/* Quick-fill buttons for demo credentials */}
         <div className="flex items-center gap-3">
-          <label className="text-xs font-bold text-slate-400">Role</label>
-          <select value={roleOption} onChange={(e) => setRoleOption(e.target.value)} className="bg-[#0B1020] border border-slate-800 text-white rounded-lg px-3 py-2 text-sm">
-            <option value="citizen">Citizen</option>
-            <option value="university">University</option>
-            <option value="industry">Industry</option>
-            <option value="government">Government (Admin)</option>
-          </select>
-          <div className="text-xs text-slate-400">Leave username empty to quick-login as selected role.</div>
+          <button type="button" onClick={() => { setUsername('admin'); setPassword('admin1234'); setErrorMessage(null); }} className="px-3 py-1 rounded-md bg-indigo-600 text-white text-xs font-bold">Fill Admin</button>
+          <button type="button" onClick={() => { setUsername('user'); setPassword('user1234'); setErrorMessage(null); }} className="px-3 py-1 rounded-md bg-emerald-600 text-white text-xs font-bold">Fill User</button>
+          <div className="text-xs text-slate-400">Use the buttons or type credentials directly.</div>
         </div>
 
         {/* Error Alert */}

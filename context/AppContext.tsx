@@ -352,24 +352,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return true;
     }
 
-    // Demo user quick login: map simple usernames/emails to seeded accounts
-    if (cleanLogin === 'citizen' || cleanLogin === 'citizen@jansetu.app') {
+    // Demo standard user credentials
+    if ((cleanLogin === 'user' || cleanLogin === 'user@jansetu.app') && cleanPass === 'user1234') {
       setIsAuthenticated(true);
       setRoleState('citizen');
       setUser(SEEDED_ACCOUNTS['citizen']);
-    } else if (cleanLogin === 'university' || cleanLogin === 'university@jansetu.app') {
-      setIsAuthenticated(true);
-      setRoleState('university');
-      setUser(SEEDED_ACCOUNTS['university']);
-    } else if (cleanLogin === 'industry' || cleanLogin === 'industry@jansetu.app') {
-      setIsAuthenticated(true);
-      setRoleState('industry');
-      setUser(SEEDED_ACCOUNTS['industry']);
-    } else if (cleanLogin === 'government' || cleanLogin === 'government@jansetu.app') {
-      // government accepts admin password as well
-      setIsAuthenticated(true);
-      setRoleState('government');
-      setUser(SEEDED_ACCOUNTS['government']);
     } else {
       return false;
     }
