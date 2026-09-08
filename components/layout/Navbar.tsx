@@ -229,7 +229,7 @@ export const Navbar: React.FC = () => {
               </button>
 
               {isRoleDropdownOpen && (
-                <div className="absolute right-0 mt-3 w-64 bg-[#0F172A] rounded-xl border border-slate-800 shadow-2xl p-2.5 z-50 space-y-1 animate-fadeIn">
+                <div className="absolute right-0 mt-3 w-64 bg-[#0F172A] rounded-xl border border-slate-800 shadow-2xl p-2.5 z-[70] space-y-1 animate-fadeIn">
                   <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 px-2">
                     <span className="text-[10px] uppercase font-black text-indigo-400">Active Role Perspective</span>
                     <span className="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-800 px-1.5 py-0.5 rounded font-bold">4 MODES</span>
@@ -245,6 +245,7 @@ export const Navbar: React.FC = () => {
                     return (
                       <button
                         key={r.id}
+                        role="menuitem"
                         onClick={() => {
                           setRole(r.id);
                           setIsRoleDropdownOpen(false);
@@ -281,11 +282,11 @@ export const Navbar: React.FC = () => {
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle theme"
+            aria-label={`Toggle theme (currently ${theme})`}
             className="p-2 rounded-xl bg-surface border border-slate-800 text-slate-200 hover:text-white focus:outline-none"
             title="Toggle theme"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-yellow-300" /> : <Moon className="w-4 h-4 text-slate-400" />}
+            {theme === 'light' ? <Sun className="w-4 h-4 text-yellow-300" /> : <Moon className="w-4 h-4 text-slate-400" />}
           </button>
 
           {/* Mobile Drawer Button */}
