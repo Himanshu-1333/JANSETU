@@ -12,6 +12,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        /* CSS variable tokens for runtime theming */
+        site: 'var(--site-bg)',
+        surface: 'var(--surface-bg)',
+        muted: 'var(--muted-bg)',
+        'card-border': 'var(--card-border)',
+        'text-default': 'var(--text-default)',
+        'muted-text': 'var(--muted-text)',
+        'accent-indigo': 'var(--accent-indigo, #6366f1)',
+        'accent-emerald': 'var(--accent-emerald, #10b981)',
+
         brand: {
           50: '#FFFFFF',
           100: '#FAFAF8',

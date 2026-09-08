@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className="sticky top-0 z-50 w-full px-3 sm:px-6 pt-2 pb-1">
       {/* Real Platform Status Bar - Rectangular */}
-      <div className="max-w-7xl mx-auto brand-status bg-[#030712]/95 backdrop-blur-md text-slate-400 text-[10px] py-1.5 px-4 rounded-t-xl border-x border-t border-slate-800/80 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto brand-status backdrop-blur-md text-slate-400 text-[10px] py-1.5 px-4 rounded-t-xl border-x border-t border-slate-800/80 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-sm bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400"></span>
           <span className="font-bold text-slate-200">JanSetu Civic Platform</span>
@@ -124,8 +124,8 @@ export const Navbar: React.FC = () => {
       <header
         className={`max-w-7xl mx-auto brand-header rounded-b-xl rounded-t-none md:rounded-b-2xl border transition-all duration-300 ${
           scrolled
-            ? 'bg-[#0B1020]/95 border-indigo-500/40 shadow-[0_12px_35px_rgba(0,0,0,0.85),0_0_25px_rgba(99,102,241,0.25)]'
-            : 'bg-[#0F172A]/90 border-slate-800 shadow-2xl'
+            ? 'bg-site/95 border-indigo-500/40 shadow-[0_12px_35px_rgba(0,0,0,0.85),0_0_25px_rgba(99,102,241,0.25)]'
+            : 'bg-surface/90 border-slate-800 shadow-2xl'
         } backdrop-blur-2xl px-5 py-2.5 flex items-center justify-between gap-4`}
       >
         {/* Brand - Rectangular Badge */}
@@ -144,7 +144,7 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Links - Rectangular Tabs */}
-        <nav className="hidden lg:flex items-center gap-1 bg-[#040711] p-1.5 rounded-xl border border-slate-800/90">
+        <nav role="navigation" aria-label="Main navigation" className="hidden lg:flex items-center gap-1 bg-surface p-1.5 rounded-xl border border-slate-800/90">
           {filteredNavLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
@@ -181,7 +181,9 @@ export const Navbar: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setIsNotifOpen(!isNotifOpen)}
-              className="p-2 rounded-xl bg-[#040711] border border-slate-800 text-slate-300 hover:text-white relative"
+              aria-expanded={isNotifOpen}
+              aria-label="Notifications"
+              className="p-2 rounded-xl bg-surface border border-slate-800 text-slate-300 hover:text-white relative"
               title="Notifications"
             >
               <Bell className="w-4 h-4 text-indigo-400" />
@@ -215,7 +217,9 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#040711] hover:bg-slate-800 border border-slate-800 text-xs font-black text-white transition-all shadow-sm"
+                aria-expanded={isRoleDropdownOpen}
+                aria-label="Switch role perspective"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-surface hover:bg-slate-800 border border-slate-800 text-xs font-black text-white transition-all shadow-sm"
               >
                 {currentRoleObj.icon}
                 <span className="hidden sm:inline font-extrabold">
@@ -277,7 +281,8 @@ export const Navbar: React.FC = () => {
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-xl bg-[#040711] border border-slate-800 text-slate-200 hover:text-white focus:outline-none"
+            aria-label="Toggle theme"
+            className="p-2 rounded-xl bg-surface border border-slate-800 text-slate-200 hover:text-white focus:outline-none"
             title="Toggle theme"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4 text-yellow-300" /> : <Moon className="w-4 h-4 text-slate-400" />}
@@ -286,7 +291,9 @@ export const Navbar: React.FC = () => {
           {/* Mobile Drawer Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-[#040711] border border-slate-800 text-slate-200 hover:text-white focus:outline-none"
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Open mobile menu"
+            className="lg:hidden p-2 rounded-xl bg-surface border border-slate-800 text-slate-200 hover:text-white focus:outline-none"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
