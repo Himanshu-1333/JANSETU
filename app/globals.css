@@ -35,6 +35,37 @@
 .dark ::-webkit-scrollbar-thumb { background: #1e293b; border: 2px solid #0b1020; }
 .dark ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
+/* FORCE light-mode overrides when html does NOT have .dark */
+html:not(.dark) {
+  --site-bg: #f8fafc;
+  --surface-bg: #ffffff;
+  --muted-bg: #f1f5f9;
+  --card-border: rgba(15,23,42,0.06);
+  --text-default: #0f172a;
+  --muted-text: #475569;
+}
+
+html:not(.dark) .text-white { color: var(--text-default) !important; }
+html:not(.dark) .text-slate-200 { color: var(--muted-text) !important; }
+html:not(.dark) .bg-\[\#040711\], html:not(.dark) [class*="bg-[#040711]"] { background-color: var(--site-bg) !important; }
+html:not(.dark) .bg-\[\#0F172A\], html:not(.dark) [class*="bg-[#0F172A]"] { background-color: var(--site-bg) !important; }
+html:not(.dark) .bg-\[\#0B1020\], html:not(.dark) [class*="bg-[#0B1020]"] { background-color: var(--site-bg) !important; }
+html:not(.dark) .bg-\[\#040711\]\/95, html:not(.dark) [class*="bg-[#040711]/95"] { background-color: rgba(248,250,252,0.95) !important; }
+
+html:not(.dark) .border-slate-800, html:not(.dark) .border-slate-800\/80, html:not(.dark) .border-slate-800\/90 { border-color: var(--card-border) !important; }
+html:not(.dark) .shadow-2xl, html:not(.dark) .shadow-\[0_12px_35px_rgba\(0,0,0,0.85\)\,0_0_25px_rgba\(99,102,241,0.25\)\] { box-shadow: 0 8px 24px -8px rgba(15,23,42,0.08) !important; }
+
+/* Inputs and panels */
+html:not(.dark) input, html:not(.dark) textarea, html:not(.dark) .rounded-xl, html:not(.dark) .rounded-2xl {
+  background-color: var(--surface-bg) !important;
+  color: var(--text-default) !important;
+  border-color: var(--card-border) !important;
+}
+
+html:not(.dark) .bg-indigo-600 { background-color: #4f46e5 !important; color: #fff !important; }
+html:not(.dark) .text-slate-300 { color: var(--muted-text) !important; }
+
+
 /* Custom subtle light scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
