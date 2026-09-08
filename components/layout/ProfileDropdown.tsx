@@ -26,6 +26,17 @@ export const ProfileDropdown: React.FC = () => {
     return () => document.removeEventListener('click', onDoc);
   }, []);
 
+  // Prevent background scroll when any modal is open
+  useEffect(() => {
+    const anyOpen = showProfileModal || showReportsModal || showPrefsModal;
+    if (anyOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [showProfileModal, showReportsModal, showPrefsModal]);
+
   const handleLogout = () => {
     signOutUser();
     router.push('/login');
@@ -72,9 +83,9 @@ export const ProfileDropdown: React.FC = () => {
 
       {/* Modals rendered via portal */}
       {showProfileModal && typeof document !== 'undefined' && ReactDOM.createPortal(
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setShowProfileModal(false)} />
-          <div className="relative bg-white dark:bg-[#071021] rounded-xl max-w-2xl w-full p-6 border border-slate-200 dark:border-slate-800 z-50">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50 z-[61]" onClick={() => setShowProfileModal(false)} />
+          <div className="relative bg-white dark:bg-[#071021] rounded-xl max-w-2xl w-full p-6 border border-slate-200 dark:border-slate-800 z-[70]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Profile</h3>
               <button onClick={() => setShowProfileModal(false)} className="p-1 rounded-md text-slate-600 dark:text-slate-300"><X className="w-4 h-4" /></button>
@@ -96,9 +107,9 @@ export const ProfileDropdown: React.FC = () => {
       }
 
       {showReportsModal && typeof document !== 'undefined' && ReactDOM.createPortal(
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setShowReportsModal(false)} />
-          <div className="relative bg-white dark:bg-[#071021] rounded-xl max-w-3xl w-full p-6 border border-slate-200 dark:border-slate-800 z-50 overflow-y-auto max-h-[80vh]">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50 z-[61]" onClick={() => setShowReportsModal(false)} />
+          <div className="relative bg-white dark:bg-[#071021] rounded-xl max-w-3xl w-full p-6 border border-slate-200 dark:border-slate-800 z-[70] overflow-y-auto max-h-[80vh]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">My Reports</h3>
               <button onClick={() => setShowReportsModal(false)} className="p-1 rounded-md text-slate-600 dark:text-slate-300"><X className="w-4 h-4" /></button>
@@ -120,9 +131,9 @@ export const ProfileDropdown: React.FC = () => {
       }
 
       {showPrefsModal && typeof document !== 'undefined' && ReactDOM.createPortal(
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setShowPrefsModal(false)} />
-          <div className="relative bg-white dark:bg-[#071021] rounded-xl max-w-xl w-full p-6 border border-slate-200 dark:border-slate-800 z-50">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50 z-[61]" onClick={() => setShowPrefsModal(false)} />
+          <div className="relative bg-white dark:bg-[#071021] rounded-xl max-w-xl w-full p-6 border border-slate-200 dark:border-slate-800 z-[70]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Preferences</h3>
               <button onClick={() => setShowPrefsModal(false)} className="p-1 rounded-md text-slate-600 dark:text-slate-300"><X className="w-4 h-4" /></button>
