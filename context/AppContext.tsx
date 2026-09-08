@@ -323,6 +323,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const cleanLogin = login.trim().toLowerCase();
     const cleanPass = pass.trim();
 
+    // Admin credentials (protected demo)
     if ((cleanLogin === 'admin' || cleanLogin === 'admin@jansetu.app') && cleanPass === 'admin1234') {
       setIsAuthenticated(true);
       setRoleState('government');
@@ -350,7 +351,42 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       showToast('Welcome back, Admin! Session authenticated.');
       return true;
     }
-    return false;
+
+    // Demo user quick login: map simple usernames/emails to seeded accounts
+    if (cleanLogin === 'citizen' || cleanLogin === 'citizen@jansetu.app') {
+      setIsAuthenticated(true);
+      setRoleState('citizen');
+      setUser(SEEDED_ACCOUNTS['citizen']);
+    } else if (cleanLogin === 'university' || cleanLogin === 'university@jansetu.app') {
+      setIsAuthenticated(true);
+      setRoleState('university');
+      setUser(SEEDED_ACCOUNTS['university']);
+    } else if (cleanLogin === 'industry' || cleanLogin === 'industry@jansetu.app') {
+      setIsAuthenticated(true);
+      setRoleState('industry');
+      setUser(SEEDED_ACCOUNTS['industry']);
+    } else if (cleanLogin === 'government' || cleanLogin === 'government@jansetu.app') {
+      // government accepts admin password as well
+      setIsAuthenticated(true);
+      setRoleState('government');
+      setUser(SEEDED_ACCOUNTS['government']);
+    } else {
+      return false;
+    }
+
+    try {
+      if (rememberMe) {
+        localStorage.setItem('jansetu_remember_me', 'true');
+        localStorage.setItem('jansetu_app_role', (SEEDED_ACCOUNTS as any)[role]?.role || 'citizen');
+        sessionStorage.removeItem('jansetu_session_auth');
+      } else {
+        sessionStorage.setItem('jansetu_session_auth', 'true');
+        localStorage.removeItem('jansetu_remember_me');
+      }
+    } catch (e) {}
+
+    showToast('Logged in to JanSetu.');
+    return true;
   };
 
   const logActivity = (action: string, details: string) => {

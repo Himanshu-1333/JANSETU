@@ -1,6 +1,7 @@
-'use client';
+ 'use client';
 
 import React from 'react';
+import { useApp } from '@/context/AppContext';
 import { Severity } from '@/lib/types';
 import { ShieldAlert, AlertTriangle, AlertCircle, Info } from 'lucide-react';
 
@@ -33,6 +34,11 @@ export const PriorityScoreBadge: React.FC<PriorityScoreBadgeProps> = ({
     colorStyle = 'bg-slate-900 text-slate-400 border-slate-800';
     icon = <Info className="w-4 h-4 text-slate-400" />;
   }
+
+  const { role } = useApp();
+
+  // Only show priority badge to admin/government users
+  if (role !== 'government') return null;
 
   const sizeClasses = {
     sm: 'text-xs px-2 py-0.5 gap-1 font-bold',
